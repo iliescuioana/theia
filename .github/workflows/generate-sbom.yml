@@ -14,7 +14,7 @@ on:
 env:
   NODE_VERSION: "20.x"
   REGISTRY_URL: "https://registry.npmjs.org"
-  PRODUCT_PATH: "packages/core"
+  PRODUCT_PATH: "packages/console"
 
 permissions:
   contents: read
