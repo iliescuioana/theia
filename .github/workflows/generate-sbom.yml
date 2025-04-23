@@ -14,7 +14,7 @@ on:
 env:
   NODE_VERSION: "20.x"
   REGISTRY_URL: "https://registry.npmjs.org"
-  PRODUCT_PATH: "packages/console"
+  PRODUCT_PATH: "./"
 
 permissions:
   contents: read
@@ -48,19 +48,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ./${{ env.PRODUCT_PATH }}/
           # npm install -g node-gyp
           npm ci
 
-      - name: Install cyclonedx-npm
+      - name: Install cdxgen
         run: |
-          npm install --global @cyclonedx/cyclonedx-npm@2.1.0
+          npm install -g @cyclonedx/cdxgen
 
       - name: Generate SBOM
         run: |
-          cd ./${{ env.PRODUCT_PATH }}/
-          pwd
-          cyclonedx-npm --output-format json --output-file bom.json
+          cdxgen -r -o bom.json --deep
 
       - name: Extract version
         id: version
