@@ -14,7 +14,7 @@ on:
 env:
   NODE_VERSION: "20.x"
   REGISTRY_URL: "https://registry.npmjs.org"
-  PRODUCT_PATH: "./"
+  PRODUCT_PATH: "packages/core/"
 
 permissions:
   contents: read
@@ -47,6 +47,8 @@ jobs:
 
       - name: Generate SBOM
         run: |
+          cd ./${{ env.PRODUCT_PATH }}/
+          pwd
           cyclonedx-npm --output-format json --output-file bom.json
 
       - name: Extract version
