@@ -14,7 +14,7 @@ on:
 env:
   NODE_VERSION: "20.x"
   REGISTRY_URL: "https://registry.npmjs.org"
-  PRODUCT_PATH: "packages/core/"
+  PRODUCT_PATH: "packages/core"
 
 permissions:
   contents: read
@@ -40,6 +40,11 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.REGISTRY_URL }}
+
+      - name: Install dependencies
+        run: |
+          npm install -g node-gyp
+          npm ci
 
       - name: Install cyclonedx-npm
         run: |
