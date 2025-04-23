@@ -48,6 +48,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd ./${{ env.PRODUCT_PATH }}/
           # npm install -g node-gyp
           npm ci
 
