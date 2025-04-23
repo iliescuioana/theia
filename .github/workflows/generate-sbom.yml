@@ -14,7 +14,7 @@ on:
 env:
   NODE_VERSION: "20.x"
   REGISTRY_URL: "https://registry.npmjs.org"
-  PRODUCT_PATH: "./"
+  PRODUCT_PATH: ""
 
 permissions:
   contents: read
@@ -46,10 +46,10 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: |
-          # npm install -g node-gyp
-          npm ci
+      # - name: Install dependencies
+      #   run: |
+      #     # npm install -g node-gyp
+      #     npm ci
 
       - name: Install cdxgen
         run: |
