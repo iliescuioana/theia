@@ -14,7 +14,7 @@ on:
 env:
   NODE_VERSION: "20.x"
   REGISTRY_URL: "https://registry.npmjs.org"
-  PRODUCT_PATH: ""
+  PRODUCT_PATH: "./"
 
 permissions:
   contents: read
@@ -57,12 +57,12 @@ jobs:
 
       - name: Generate SBOM
         run: |
-          cdxgen -r -o bom.json --deep
+          cdxgen -r -o ${{ env.PRODUCT_PATH }}/bom.json --deep
 
       - name: Extract version
         id: version
         run: |
-          VERSION="$(jq -r '.metadata.component.version' < ./${{ env.PRODUCT_PATH }}/bom.json)"
+          VERSION="$(jq -r '.metadata.component.version' < ${{ env.PRODUCT_PATH }}/bom.json)"
 
           echo "PROJECT_VERSION=$VERSION" >> $GITHUB_OUTPUT
           echo "Product version: $VERSION"
