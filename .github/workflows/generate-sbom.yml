@@ -41,6 +41,11 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.REGISTRY_URL }}
 
+      - name: Use Python 3.11
+        uses: actions/setup-python@b64ffcaf5b410884ad320a9cfac8866006a109aa # v4.8.0
+        with:
+          python-version: '3.11'
+
       - name: Install dependencies
         run: |
           npm install -g node-gyp
